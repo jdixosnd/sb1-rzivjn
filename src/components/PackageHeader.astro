@@ -1,0 +1,67 @@
+---
+interface Props {
+    title: string;
+    duration: string;
+    price: string;
+}
+
+const { title, duration, price } = Astro.props;
+---
+
+<header class="package-header">
+    <div class="container">
+        <h1>{title}</h1>
+        <div class="package-meta">
+            <div class="meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span>{duration}</span>
+            </div>
+            <div class="meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                <span>{price}</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<style>
+    .package-header {
+        background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/images/kashmir-header.jpg');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 4rem 0;
+        text-align: center;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 2rem;
+    }
+    .package-meta {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+    }
+    .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .meta-item svg {
+        color: var(--primary);
+    }
+    .meta-item span {
+        font-size: 1.2rem;
+    }
+</style>

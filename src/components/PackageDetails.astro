@@ -1,0 +1,132 @@
+---
+interface Detail {
+    included: string[];
+    excluded: string[];
+    hotels: {
+        name: string;
+        location: string;
+        rating: number;
+    }[];
+}
+
+interface Props {
+    details: Detail;
+}
+
+const { details } = Astro.props;
+---
+
+<section class="package-details">
+    <div class="container">
+        <div class="details-grid">
+            <div class="inclusions">
+                <h3>Package Inclusions</h3>
+                <ul>
+                    {details.included.map(item => (
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            {item}
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            <div class="exclusions">
+                <h3>Package Exclusions</h3>
+                <ul>
+                    {details.excluded.map(item => (
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                            {item}
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+        <div class="hotels">
+            <h3>Hotels</h3>
+            <div class="hotel-grid">
+                {details.hotels.map(hotel => (
+                    <div class="hotel-card">
+                        <h4>{hotel.name}</h4>
+                        <p>{hotel.location}</p>
+                        <div class="rating">
+                            {Array.from({ length: hotel.rating }).map(() => (
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                </svg>
+                            ))}
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .package-details {
+        padding: 3rem 0;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+    .details-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+    h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--primary);
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    li {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.8rem;
+        color: var(--text-light);
+    }
+    .inclusions svg {
+        color: #2ecc71;
+    }
+    .exclusions svg {
+        color: #e74c3c;
+    }
+    .hotel-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+    .hotel-card {
+        padding: 1.5rem;
+        border-radius: 8px;
+        background: white;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .hotel-card h4 {
+        margin-bottom: 0.5rem;
+        color: var(--text-dark);
+    }
+    .hotel-card p {
+        color: var(--text-light);
+        margin-bottom: 1rem;
+    }
+    .rating {
+        color: #f1c40f;
+        display: flex;
+        gap: 0.2rem;
+    }
+</style>

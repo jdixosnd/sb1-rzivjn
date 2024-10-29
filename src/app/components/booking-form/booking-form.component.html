@@ -1,0 +1,38 @@
+<section class="booking">
+  <div class="container">
+    <h2>Book Your Trip</h2>
+    <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" class="booking-form">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" formControlName="name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" formControlName="email">
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" formControlName="phone">
+        </div>
+        <div class="form-group">
+          <label for="date">Travel Date</label>
+          <input type="date" id="date" formControlName="date">
+        </div>
+        <div class="form-group">
+          <label for="adults">Adults</label>
+          <input type="number" id="adults" formControlName="adults">
+        </div>
+        <div class="form-group">
+          <label for="children">Children</label>
+          <input type="number" id="children" formControlName="children">
+        </div>
+      </div>
+      <div class="form-group full-width">
+        <label for="message">Special Requirements</label>
+        <textarea id="message" formControlName="message" rows="4"></textarea>
+      </div>
+      <button type="submit" class="btn" [disabled]="!bookingForm.valid">Book Now</button>
+    </form>
+  </div>
+</section>
